@@ -1,5 +1,6 @@
 package model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -18,6 +19,11 @@ public class Club {
 		owners = new ArrayList<People>();
 	}
 	
-	
+	public void chargePeople() {
+		File archive = new File("C:");
+		
+		
+		
+	}
 	
 }
