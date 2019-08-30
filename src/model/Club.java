@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -23,7 +25,7 @@ public class Club {
 		owners = new ArrayList<People>();
 	}
 	
-	public void chargePeople() throws FileNotFoundException {
+	public void chargePeople() throws FileNotFoundException, ParseException {
 			String persona = "";
 		File archive = new File("C:");
 		try {
@@ -33,7 +35,9 @@ public class Club {
 			while((texto = c.readLine()) != null){
 				persona += c.toString();
 				String [] camposPersonas = persona.split(",");
-				People ensayo = new People(camposPersonas[0], camposPersonas[1], camposPersonas[2], camposPersonas[3] );
+				SimpleDateFormat change = new SimpleDateFormat("dd/mm/yyyy");
+				Date fechaDate = change.parse(camposPersonas[3]);
+				People ensayo = new People(camposPersonas[0], camposPersonas[1], camposPersonas[2], fechaDate, camposPersonas[4] );
 				owners.add(ensayo);
 			}
 			
@@ -46,6 +50,11 @@ public class Club {
 		
 		
 		
+	}
+	
+	public void savePeople() {
+		
+	
 	}
 	
 }
