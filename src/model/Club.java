@@ -12,6 +12,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * @author camilo
+ *
+ */
 public class Club {
 	private String name;
 	private String id;
@@ -19,6 +23,12 @@ public class Club {
 	private String kindOfPet;
 	private ArrayList <People> owners;
 	
+	/**
+	 * @param name
+	 * @param id
+	 * @param creationDate
+	 * @param kindOfPet
+	 */
 	public Club(String name, String id, Date creationDate, String kindOfPet) {
 		this.name = name;
 		this.id = id;
@@ -27,6 +37,46 @@ public class Club {
 		owners = new ArrayList<People>();
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public String getKindOfPet() {
+		return kindOfPet;
+	}
+
+	public void setKindOfPet(String kindOfPet) {
+		this.kindOfPet = kindOfPet;
+	}
+
+	public ArrayList<People> getOwners() {
+		return owners;
+	}
+
+	public void setOwners(ArrayList<People> owners) {
+		this.owners = owners;
+	}
+
 	public void chargePeople() throws FileNotFoundException, ParseException {
 		String persona = "";
 		File archive = new File("C:");
@@ -44,7 +94,6 @@ public class Club {
 			}
 				
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -56,10 +105,39 @@ public class Club {
 			ObjectOutputStream object = new ObjectOutputStream(file);
 			object.writeObject(owners);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	public boolean exist(String id) {
+		boolean exist = false;
+		for(int i = 0; i>owners.size(); i++) {
+			if(owners.get(i).getId().equals(id)) {
+				exist = true;
+			}
+		}
+		return exist;
+	}
+	
+	/**
+	 * @param a
+	 * @throws ExceptionRegistry
+	 */
+	public void addPeople(People a) throws ExceptionRegistry{
+		
+		if(exist(a.getId()) == false) {
+			owners.add(a);
+		}
+		else {
+			throw new ExceptionRegistry(a.getName());
+		}
+	
+	}
+	
+	
 	
 }
