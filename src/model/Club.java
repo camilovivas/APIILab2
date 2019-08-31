@@ -101,7 +101,7 @@ public class Club {
 	public void savePeople() throws FileNotFoundException {
 		FileOutputStream file;
 		try {
-			file = new FileOutputStream("./files/personas.arc");
+			file = new FileOutputStream("./files/personas"+name+".arc");
 			ObjectOutputStream object = new ObjectOutputStream(file);
 			object.writeObject(owners);
 		} catch (IOException e) {
@@ -109,6 +109,24 @@ public class Club {
 		}
 	}
 	
+	public void addPetToPeople() throws IOException {
+		String pet ="";
+		File archive = new File("C:");
+		
+		try {
+			BufferedReader d = new BufferedReader(new FileReader(archive));
+			StringBuffer f= new StringBuffer();
+			String tex;
+			while((tex = d.readLine())!= null) {
+				
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
 	/**
 	 * @param id
 	 * @return
