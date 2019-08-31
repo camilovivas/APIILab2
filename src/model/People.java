@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * @author camilo
+ *
+ */
 public class People implements Serializable{
 	private String name;
 	private String lastName;
@@ -12,6 +16,13 @@ public class People implements Serializable{
 	private String perOfPreference;
 	private ArrayList <Pet> pets;
 	
+	/**
+	 * @param name
+	 * @param lastName
+	 * @param id
+	 * @param dateOfBorn
+	 * @param perOfPreference
+	 */
 	public People(String name, String lastName, String id, Date dateOfBorn, String perOfPreference) {
 		this.name = name;
 		this.lastName = lastName;
@@ -69,6 +80,32 @@ public class People implements Serializable{
 		this.pets = pets;
 	}
 	
+	/**
+	 * @param name
+	 * @return
+	 */
+	public boolean exist(String name) {
+		boolean exist = false;
+		for (int i = 0; i < pets.size(); i++) {
+			if(pets.get(i).getName().equals(name)) {
+				exist = true;
+			}
+		}
+		return exist;
+	}
+	
+	/**
+	 * @param a
+	 * @throws ExceptionRegistry
+	 */
+	public void addPet(Pet a)throws ExceptionRegistry {
+		if(exist(a.getName()) == false) {
+			pets.add(a);
+		}
+		else {
+			throw new ExceptionRegistry(a.getName());
+		}
+	}
 	
 	
 

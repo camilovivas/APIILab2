@@ -17,6 +17,46 @@ public class Pet implements Serializable{
 		this.type = type;
 		this.kindOfPet = kindOfPet;
 	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Date getDateBorn() {
+		return dateBorn;
+	}
+
+	public void setDateBorn(Date dateBorn) {
+		this.dateBorn = dateBorn;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getKindOfPet() {
+		return kindOfPet;
+	}
+
+	public void setKindOfPet(String kindOfPet) {
+		this.kindOfPet = kindOfPet;
+	}
 	
 	
 	
