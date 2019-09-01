@@ -7,14 +7,14 @@ public class Pet implements Serializable{
 	private String id;
 	private String name;
 	private Date dateBorn;
-	private String type;
+	private String gender;
 	private String kindOfPet;
 	
-	public Pet(String id, String name, Date dateBorn, String type, String kindOfPet) {
+	public Pet(String id, String name, Date dateBorn, String gender, String kindOfPet) {
 		this.id = id;
 		this.name = name;
 		this.dateBorn = dateBorn;
-		this.type = type;
+		this.gender = gender;
 		this.kindOfPet = kindOfPet;
 	}
 
@@ -42,12 +42,12 @@ public class Pet implements Serializable{
 		this.dateBorn = dateBorn;
 	}
 
-	public String getType() {
-		return type;
+	public String getGender() {
+		return gender;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setType(String gender) {
+		this.gender = gender;
 	}
 
 	public String getKindOfPet() {
