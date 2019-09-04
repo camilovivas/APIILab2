@@ -98,6 +98,10 @@ public class Club {
 		}
 	}
 	
+	/**
+	 * this method save the ArrayList of peoples whit yours pets in a archive serializable
+	 * @throws FileNotFoundException
+	 */
 	public void savePeople() throws FileNotFoundException {
 		FileOutputStream file;
 		try {
@@ -160,6 +164,45 @@ public class Club {
 	
 	}
 	
+	public void organizePeople(int method) {
+		switch(method) {
+		case 1:
+			organizePeopleName();
+		case 2:
+			organizePeopleLastName();
+		case 3:
+			organizePeopleId();
+		case 4:
+			organizeDateOfBorn();
+		case 5:
+			organizePetOfpreference();
+		case 6:
+			organizePeopleWhitMorePets();
+		}
+	}
 	
+	public void organizePeopleName() {
+		
+	}
+	
+	public void organizePeopleLastName() {
+		
+	}
+	
+	public void organizePeopleId() {
+		
+	}
+	
+	public void organizeDateOfBorn() {
+		
+	}
+	
+	public void organizePetOfpreference() {
+		
+	}
+	
+	public void organizePeopleWhitMorePets() {
+		
+	}
 	
 }

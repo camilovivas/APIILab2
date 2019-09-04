@@ -65,5 +65,35 @@ public class Investor {
 		}
 	}
 	
+	public void organizeClubs(int method) {
+		switch(method) {
+		case 1:
+			organizeClubsName();
+		case 2:
+			organizeClubsId();
+		case 3:
+			organizeClubsCreationDate();
+		case 4:
+			organizeClubskindOfpet();
+		case 5:
+			organizeClubsWhitMorePeople();
+		}
+	}
+	
+	public void organizeClubsName() {
+		
+	}
+	public void organizeClubsId() {
+		
+	}
+	public void organizeClubsCreationDate() {
+		
+	}
+	public void organizeClubskindOfpet() {
+		
+	}
+	public void organizeClubsWhitMorePeople() {
+		
+	}
 	
 }
