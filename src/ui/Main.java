@@ -6,11 +6,12 @@ import model.*;
 
 public class Main {
 	
-	private Investor relacion;
+	private Investor relation;
 	private Scanner	reader;
 	
 	public Main() {
 		reader = new Scanner(System.in);
+		relation = new Investor();
 	}
 	
 	public static void main(String[] args) {

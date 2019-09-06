@@ -2,10 +2,12 @@ package model;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -76,7 +78,8 @@ public class Club {
 	public void setOwners(ArrayList<People> owners) {
 		this.owners = owners;
 	}
-
+	
+	//this method only used 1 times
 	public void chargePeople() throws FileNotFoundException, ParseException {
 		String persona = "";
 		File archive = new File("C:");
@@ -112,7 +115,7 @@ public class Club {
 			e.printStackTrace();
 		}
 	}
-	
+	//this method only used 1 times
 	public void addPetToPeople() throws IOException, ParseException, ExceptionRegistry {
 		String pet ="";
 		File archive = new File("C:");
@@ -120,10 +123,9 @@ public class Club {
 			BufferedReader d = new BufferedReader(new FileReader(archive));
 			StringBuffer f= new StringBuffer();
 			String tex;
-			
-			for (int i = 0; i < owners.size(); i++) {//agrega una cantidad de pets ramdon a cada persona
+			for (int i = 0; i < owners.size(); i++) {
 				int numberRandom = (int) (Math.random()*3);
-				while((tex = d.readLine())!= null || numberRandom>0) {
+				while((tex = d.readLine())!= null && numberRandom>0) {
 					pet += d.toString();
 					String [] camposPet = pet.split(",");
 					SimpleDateFormat change =  new SimpleDateFormat("dd/mm/yyyy");
@@ -133,6 +135,21 @@ public class Club {
 				}
 			}
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * This method import the object from archive serializado
+	 * @throws ClassNotFoundException
+	 */
+	public void importPeople() throws ClassNotFoundException {
+		File archiveSerializado = new File("C:");
+		try {
+			ObjectInputStream object = new ObjectInputStream(new FileInputStream(archiveSerializado));
+			owners = (ArrayList<People>) object.readObject();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
