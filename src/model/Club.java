@@ -121,7 +121,6 @@ public class Club {
 		File archive = new File("C:");
 		try {
 			BufferedReader d = new BufferedReader(new FileReader(archive));
-			StringBuffer f= new StringBuffer();
 			String tex;
 			for (int i = 0; i < owners.size(); i++) {
 				int numberRandom = (int) (Math.random()*3);
@@ -148,6 +147,7 @@ public class Club {
 		try {
 			ObjectInputStream object = new ObjectInputStream(new FileInputStream(archiveSerializado));
 			owners = (ArrayList<People>) object.readObject();
+			object.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -202,6 +202,7 @@ public class Club {
 	
 	public void organizePeopleName() {
 		
+		
 	}
 	
 	public void organizePeopleLastName() {
@@ -223,5 +224,7 @@ public class Club {
 	public void organizePeopleWhitMorePets() {
 		
 	}
+	
+	//remove
 	
 }

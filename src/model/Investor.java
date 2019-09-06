@@ -42,7 +42,6 @@ public class Investor {
 	
 		
 	}
-//	como es una prueba de esto?
 	public void saveClubs() {
 		File archive = new File("C:");
 		try {
@@ -55,7 +54,7 @@ public class Investor {
 				String kindOfPet = clubs.get(i).getKindOfPet();
 				//guardar
 				BufferedWriter s = new BufferedWriter(escritor);
-				s.write(name+","+id+","+creationDate+","+kindOfPet);//presiento que se va mantener reescribiendo y al final va a quedar una sola linea
+				s.write(name+","+id+","+creationDate+","+kindOfPet);//presiento que se va mantener reescribiendo y al final va a quedar una sola linea R// lo pongo todo en un String
 //				escritor.write(name+","+id+","+creationDate+","+kindOfPet);
 			}
 			
