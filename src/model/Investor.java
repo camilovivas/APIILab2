@@ -14,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import exception.ExceptionRegistry;
+
 public class Investor {
 	private ArrayList <Club> clubs;
 
@@ -42,11 +44,15 @@ public class Investor {
 	
 		
 	}
+	/**
+	 * this method save the attributes from all clubs in a archive txt
+	 */
 	public void saveClubs() {
 		File archive = new File("C:");
+		String save = "";
 		try {
 			FileWriter escritor = new FileWriter(archive);
-			for (int i = 0; i < clubs.size(); i++) {
+			for (int i = 0; i < clubs.size()-1; i++) {
 				//atributos a guardar
 				String name = clubs.get(i).getName();
 				String id = clubs.get(i).getId();
@@ -54,10 +60,11 @@ public class Investor {
 				String kindOfPet = clubs.get(i).getKindOfPet();
 				//guardar
 				BufferedWriter s = new BufferedWriter(escritor);
-				s.write(name+","+id+","+creationDate+","+kindOfPet);//presiento que se va mantener reescribiendo y al final va a quedar una sola linea R// lo pongo todo en un String
-//				escritor.write(name+","+id+","+creationDate+","+kindOfPet);
+				save += (name+","+id+","+creationDate+","+kindOfPet+"\n");
+				if(i == (clubs.size())-2){
+					s.write(save);
+				}
 			}
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -93,6 +100,40 @@ public class Investor {
 	}
 	public void organizeClubsWhitMorePeople() {
 		
+	}
+	
+	public void addPeople(People a, int club) throws ExceptionRegistry {
+		if(exist(a) == false){
+			clubs.get(club).addPeople(a);
+		}
+		else {
+			throw new ExceptionRegistry(a.getName());
+		}
+	}
+	
+	public boolean exist(People a) {
+		boolean found = false;
+		for (int i = 0; i < clubs.size()-1 && !found; i++) {
+			if(clubs.get(i).exist(a.getId())== true) {
+				found = true;
+			}
+		}
+		return found;
+	}
+	
+	public String showNameClubs(){
+		String names = "";
+		for (int i = 0; i < clubs.size()-1; i++) {
+			names += "seleccione el numero del club que desea registrarse"+"\n";
+			names += i+". "+clubs.get(i).getName()+"\n";
+		}
+		return names;
+	}
+	
+	public Date configDate(String date) throws ParseException {
+		SimpleDateFormat a = new SimpleDateFormat("dd/mm/yyyy");
+		Date b = a.parse(date);
+		return b;
 	}
 	
 }

@@ -14,7 +14,7 @@ public class People implements Serializable{
 	private String lastName;
 	private String id;
 	private Date dateOfBorn;
-	private String perOfPreference;
+	private String petOfPreference;
 	private ArrayList <Pet> pets;
 	
 	/**
@@ -24,12 +24,12 @@ public class People implements Serializable{
 	 * @param dateOfBorn
 	 * @param perOfPreference
 	 */
-	public People(String name, String lastName, String id, Date dateOfBorn, String perOfPreference) {
+	public People(String name, String lastName, String id, Date dateOfBorn, String petOfPreference) {
 		this.name = name;
 		this.lastName = lastName;
 		this.id = id;
 		this.dateOfBorn = dateOfBorn;
-		this.perOfPreference = perOfPreference;
+		this.petOfPreference = petOfPreference;
 		pets = new ArrayList<Pet>();
 	}
 
@@ -65,12 +65,12 @@ public class People implements Serializable{
 		this.dateOfBorn = dateOfBorn;
 	}
 
-	public String getPerOfPreference() {
-		return perOfPreference;
+	public String getPetOfPreference() {
+		return petOfPreference;
 	}
 
-	public void setPerOfPreference(String perOfPreference) {
-		this.perOfPreference = perOfPreference;
+	public void setPetOfPreference(String petOfPreference) {
+		this.petOfPreference = petOfPreference;
 	}
 
 	public ArrayList<Pet> getPets() {

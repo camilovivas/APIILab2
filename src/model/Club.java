@@ -161,7 +161,7 @@ public class Club {
 	 */
 	public boolean exist(String id) {
 		boolean exist = false;
-		for(int i = 0; i>owners.size(); i++) {
+		for(int i = 0; i>owners.size() && !exist; i++) {
 			if(owners.get(i).getId().equals(id)) {
 				exist = true;
 			}
@@ -173,15 +173,8 @@ public class Club {
 	 * @param a
 	 * @throws ExceptionRegistry
 	 */
-	public void addPeople(People a) throws ExceptionRegistry{
-		
-		if(exist(a.getId()) == false) {
-			owners.add(a);
-		}
-		else {
-			throw new ExceptionRegistry(a.getName());
-		}
-	
+	public void addPeople(People a){
+		owners.add(a);	
 	}
 	
 	public void organizePeople(int method) {
