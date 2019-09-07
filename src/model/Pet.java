@@ -58,6 +58,35 @@ public class Pet implements Serializable{
 		this.kindOfPet = kindOfPet;
 	}
 	
+	public int compareName(Pet a ) {
+		int retorno = 0;
+		int compare = name.compareToIgnoreCase(a.getName());
+		if(compare<0) {
+			retorno = -1;
+		}
+		else if(compare ==0) {
+			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		
+		return retorno;
+	}
 	
+	public int compareId(Pet a ) {
+		int retorno = 0;
+		int compare = id.compareToIgnoreCase(a.getId());
+		if(compare <0) {
+			retorno = -1;
+		}
+		else if(compare == 0) {
+			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
+	}
 	
 }

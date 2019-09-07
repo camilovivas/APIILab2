@@ -139,6 +139,24 @@ public class Club {
 		}
 	}
 	
+	public void addPet(String id) {
+		
+	}
+	
+	/**
+	 * this method find a people using find binaria
+	 * @param id
+	 * @return
+	 */
+	public People findPeople(String id) {
+		int inicio = 0;
+		int fin;
+		int medio;
+		while() {
+			
+		}
+	}
+	
 	/**
 	 * This method import the object from archive serializado
 	 * @throws ClassNotFoundException
