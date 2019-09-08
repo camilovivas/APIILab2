@@ -150,11 +150,23 @@ public class Club {
 	 */
 	public People findPeople(String id) {
 		int inicio = 0;
-		int fin;
-		int medio;
-		while() {
-			
+		int fin = owners.size()-1;
+		People retorno = null;
+		boolean found = false;
+		while(inicio<= fin && !found) {
+			int medio = (inicio+fin)/2;
+			if(owners.get(medio).getId().equals(id)) {
+				found = true;
+				retorno = owners.get(medio);
+			}
+			else if(owners.get(medio).getId().compareTo(id)>0) {
+				fin = medio-1; 
+			}
+			else {
+				inicio = medio+1;
+			}
 		}
+		return retorno;
 	}
 	
 	/**

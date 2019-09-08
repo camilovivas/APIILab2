@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import exception.ExceptionNoFound;
 import exception.ExceptionRegistry;
 
 public class Investor {
@@ -66,7 +67,6 @@ public class Investor {
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -134,6 +134,20 @@ public class Investor {
 		SimpleDateFormat a = new SimpleDateFormat("dd/mm/yyyy");
 		Date b = a.parse(date);
 		return b;
+	}
+	
+	public void addPet(String idOwner, Pet b) throws ExceptionRegistry, ExceptionNoFound {
+		boolean found = false;
+		for (int i = 0; i < clubs.size()-1 && !found; i++) {
+			People a = clubs.get(i).findPeople(idOwner);
+			if(a != null){
+				found = true;
+				a.addPet(b);
+			}
+			else if(i == clubs.size()-2){
+				throw new ExceptionNoFound(idOwner);
+			}
+		}	
 	}
 	
 }

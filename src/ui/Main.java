@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Scanner;
 
+import exception.ExceptionNoFound;
 import exception.ExceptionRegistry;
 import model.*;
 
@@ -43,6 +44,11 @@ public class Main {
 		switch(i) {
 		case 1:
 		case 2:
+			try {
+				case2();
+			} catch (ExceptionNoFound e) {
+				e.printStackTrace();
+			}
 		case 3:
 			int h = namesClubs();
 			People a = attributesPeople();
@@ -53,6 +59,23 @@ public class Main {
 			
 		
 		}
+	}
+	public void  case2() throws ParseException, ExceptionRegistry, ExceptionNoFound {
+		System.out.println("ingrese el id de la persona a registrar la mascota");
+		String idOwner = reader.next();
+		System.out.println("ingrese la identificacion");
+		String id = reader.next();
+		System.out.println("ingrese el nombre de la mascota");
+		String name = reader.next();
+		System.out.println("ingrese la fecha de nacimiento"+"/n"+"EJEMPLO: DD/MM/YYYY");
+		String dateBorn = reader.next();
+		Date date = relation.configDate(dateBorn);
+		System.out.println("ingrese el genero"+"\n"+"FEMALE O MALE");
+		String gen = reader.next();
+		System.out.println("ingrese tipo de mascota");
+		String tipe = reader.next();
+		Pet a = new Pet(id, name, date, gen, tipe);
+		relation.addPet(idOwner, a);
 	}
 	
 	public int namesClubs() {
