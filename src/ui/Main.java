@@ -60,6 +60,12 @@ public class Main {
 		
 		}
 	}
+	public void case6() {
+		System.out.println("que va a a ingresar:"+"\n"+"1. si va a ingresar el nombre de la persona a eliminar"+"\n"+"2. si va a ingresar el id de la persona a eliminar");
+		
+	}
+	
+	
 	public void  case2() throws ParseException, ExceptionRegistry, ExceptionNoFound {
 		System.out.println("ingrese el id de la persona a registrar la mascota");
 		String idOwner = reader.next();
@@ -100,7 +106,7 @@ public class Main {
 		return p;
 	}
 	
-	public void case6() {
+	public void case7() {
 		System.out.println("ingrese el numero de la opcion que desea realizar");
 		System.out.println("1. generar listados de personas");
 		System.out.println("2. generar listados de mascotas");

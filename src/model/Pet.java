@@ -89,4 +89,49 @@ public class Pet implements Serializable{
 		return retorno;
 	}
 	
+	public int compareDate(Pet a) {
+		int retorno = 0;
+		int compare = dateBorn.compareTo(a.getDateBorn());
+		if(compare <0) {
+			retorno = -1;
+		}
+		else if (compare == 0) {
+			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
+	}
+	
+	public int compareGen(Pet a) {
+		int retorno = 0;
+		int compare = gender.compareToIgnoreCase(a.getGender());
+		if(compare <0) {
+			retorno = -1;
+		}
+		else if(compare == 0) {
+			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
+	}
+	
+	public int compareKindOfPet(Pet a) {
+		int retorno = 0;
+		int compare = kindOfPet.compareToIgnoreCase(a.kindOfPet);
+		if(compare <0) {
+			retorno = -1;
+		}
+		else if (compare == 0) {
+			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
+	}
+	
 }

@@ -139,9 +139,6 @@ public class Club {
 		}
 	}
 	
-	public void addPet(String id) {
-		
-	}
 	
 	/**
 	 * this method find a people using find binaria

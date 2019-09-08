@@ -109,5 +109,21 @@ public class People implements Serializable{
 	}
 	
 	
+	public int compareName(People a) {
+		
+	}
+	public int comparelastName(People a) {
+		
+	}
+	public int compareId(People a) {
+		
+	}
+	public int compareDate(People a) {
+		
+	}
+	public int comparePetOfPreference(People a) {
+		
+	}
+	
 
 }
