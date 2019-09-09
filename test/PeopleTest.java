@@ -36,7 +36,7 @@ class PeopleTest {
 		for (int i = 0; i < e.getPets().size(); i++) {
 			retorno += e.getPets().get(i).getName()+" ";
 		}
-		assertEquals("andres bosco firulais zapata", retorno);
+		assertEquals("andres bosco firulais zapata ", retorno);
 	}
 
 }

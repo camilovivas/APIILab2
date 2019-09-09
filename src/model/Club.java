@@ -208,6 +208,7 @@ public class Club {
 		owners.add(a);	
 	}
 	
+	//	ORDENAMIENTO
 	public void organizePeople(int method) {
 		switch(method) {
 		case 1:
@@ -225,8 +226,20 @@ public class Club {
 		}
 	}
 	
+	/**
+	 * This method organize the people by name using insertion sort
+	 */
 	public void organizePeopleName() {
-		
+		for (int i = 1; i < owners.size(); i++) {
+			for (int j = i; j > 0; j--) {
+				int compare = owners.get(j-1).compareName(owners.get(j));
+				if(compare == 1) {
+					People tem = owners.get(j);
+					owners.set(j, owners.get(j-1));
+					owners.set(j-1, tem);
+				}
+			}
+		}
 		
 	}
 	
@@ -310,5 +323,7 @@ public class Club {
 		}
 		return retorno;
 	}
-		
+	
+
+	
 }

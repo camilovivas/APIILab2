@@ -191,16 +191,16 @@ public class People implements Serializable{
 		for (int i = 0; i < pets.size()-1; i++) {
 			Pet menor = pets.get(i);
 			int cual = i;
-			for (int j = 0; j < pets.size(); j++) {
+			for (int j = i+1; j < pets.size(); j++) {
 				int compare = pets.get(j).compareName(menor);
 				if(compare == -1) {
 					menor = pets.get(j);
 					cual = j;
 				}
 			}
-			Pet tem = 
-			pets.set(i, pets.get(cual));
-			pets.set(cual, pets.get(i));
+			Pet tem = pets.get(i);
+			pets.set(i, menor);
+			pets.set(cual, tem);
 		}
 	}
 	
