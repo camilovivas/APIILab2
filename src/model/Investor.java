@@ -25,7 +25,7 @@ public class Investor {
 	}
 	
 	public void chargeClubs() throws IOException, ParseException {
-		File archive = new File("C:");
+		File archive = new File("./files/clubs/clubs.txt");
 		try {
 			BufferedReader lector = new BufferedReader(new FileReader(archive));
 			StringBuffer d = new StringBuffer();
@@ -49,7 +49,7 @@ public class Investor {
 	 * this method save the attributes from all clubs in a archive txt
 	 */
 	public void saveClubs() {
-		File archive = new File("C:");
+		File archive = new File("./files/clubs/clubs.txt");
 		String save = "";
 		try {
 			FileWriter escritor = new FileWriter(archive);
@@ -69,6 +69,11 @@ public class Investor {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void addClubs(Club a) {
+		clubs.add(a);
+		saveClubs();
 	}
 	
 	public void organizeClubs(int method) {
@@ -149,5 +154,5 @@ public class Investor {
 			}
 		}	
 	}
-	
+	// para eliminar una persona de un club 
 }

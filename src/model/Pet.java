@@ -58,6 +58,7 @@ public class Pet implements Serializable{
 		this.kindOfPet = kindOfPet;
 	}
 	
+	//COMPARACIONES
 	public int compareName(Pet a ) {
 		int retorno = 0;
 		int compare = name.compareToIgnoreCase(a.getName());

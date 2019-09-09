@@ -108,21 +108,79 @@ public class People implements Serializable{
 		}
 	}
 	
+	//COMPARACIONES
 	
 	public int compareName(People a) {
+		int retorno = 0;
+		int compare = name.compareToIgnoreCase(a.getName());
+		if(compare <0) {
+			retorno = -1;
+		}
+		else if(compare == 0) {
+			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
 		
 	}
 	public int comparelastName(People a) {
+		int retorno = 0;
+		int compare = lastName.compareToIgnoreCase(a.getLastName());
+		if(compare <0) {
+			retorno = -1;
+		}
+		else if(compare == 0) {
+			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
 		
 	}
 	public int compareId(People a) {
-		
+		int retorno = 0;
+		int compare = id.compareToIgnoreCase(a.getId());
+		if(compare <0) {
+			retorno = -1;
+		}
+		else if(compare == 0) {
+			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
 	}
 	public int compareDate(People a) {
-		
+		int retorno = 0;
+		int compare = dateOfBorn.compareTo(a.getDateOfBorn());
+		if(compare <0) {
+			retorno = -1;
+		}
+		else if(compare == 0) {
+			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
 	}
 	public int comparePetOfPreference(People a) {
-		
+		int retorno = 0;
+		int compare = petOfPreference.compareToIgnoreCase(a.getPetOfPreference());
+		if(compare <0) {
+			retorno = -1;
+		}
+		else if(compare == 0) {
+			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
 	}
 	
 
