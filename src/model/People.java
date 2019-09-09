@@ -183,5 +183,27 @@ public class People implements Serializable{
 		return retorno;
 	}
 	
+	//ORDENADORES
+	/**
+	 * this method organize the pets by name using sort order
+	 */
+	public void organizePetName() {
+		for (int i = 0; i < pets.size()-1; i++) {
+			Pet menor = pets.get(i);
+			int cual = i;
+			for (int j = 0; j < pets.size(); j++) {
+				int compare = pets.get(j).compareName(menor);
+				if(compare == -1) {
+					menor = pets.get(j);
+					cual = j;
+				}
+			}
+			Pet tem = 
+			pets.set(i, pets.get(cual));
+			pets.set(cual, pets.get(i));
+		}
+	}
+	
+	
 
 }
