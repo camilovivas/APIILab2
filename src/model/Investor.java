@@ -24,6 +24,14 @@ public class Investor {
 		clubs = new ArrayList<Club>();
 	}
 	
+	public ArrayList<Club> getClubs() {
+		return clubs;
+	}
+
+	public void setClubs(ArrayList<Club> clubs) {
+		this.clubs = clubs;
+	}
+
 	public void chargeClubs() throws IOException, ParseException {
 		File archive = new File("./files/clubs/clubs.txt");
 		try {
@@ -53,7 +61,7 @@ public class Investor {
 		String save = "";
 		try {
 			FileWriter escritor = new FileWriter(archive);
-			for (int i = 0; i < clubs.size()-1; i++) {
+			for (int i = 0; i < clubs.size(); i++) {
 				//atributos a guardar
 				String name = clubs.get(i).getName();
 				String id = clubs.get(i).getId();
@@ -62,7 +70,7 @@ public class Investor {
 				//guardar
 				BufferedWriter s = new BufferedWriter(escritor);
 				save += (name+","+id+","+creationDate+","+kindOfPet+"\n");
-				if(i == (clubs.size())-2){
+				if(i == (clubs.size())-1){
 					s.write(save);
 				}
 			}
@@ -118,7 +126,7 @@ public class Investor {
 	
 	public boolean exist(People a) {
 		boolean found = false;
-		for (int i = 0; i < clubs.size()-1 && !found; i++) {
+		for (int i = 0; i < clubs.size() && !found; i++) {
 			if(clubs.get(i).exist(a.getId())== true) {
 				found = true;
 			}
@@ -126,10 +134,24 @@ public class Investor {
 		return found;
 	}
 	
+	
+	public void removePeople(String id) throws ExceptionNoFound, FileNotFoundException {
+		for (int i = 0; i < clubs.size(); i++) {
+			People a = clubs.get(i).findPeople(id);
+			if(a != null) {
+				a.removeAllPets();
+				clubs.get(i).removePeople(id);
+			}
+			else if(i == clubs.size()-2){
+				throw new ExceptionNoFound(id);
+			}
+		}
+	}
+	
 	public String showNameClubs(){
 		String names = "";
-		for (int i = 0; i < clubs.size()-1; i++) {
-			names += "seleccione el numero del club que desea registrarse"+"\n";
+		names += "seleccione el numero del club que desea registrarse"+"\n";
+		for (int i = 0; i < clubs.size(); i++) {
 			names += i+". "+clubs.get(i).getName()+"\n";
 		}
 		return names;
@@ -143,16 +165,53 @@ public class Investor {
 	
 	public void addPet(String idOwner, Pet b) throws ExceptionRegistry, ExceptionNoFound {
 		boolean found = false;
-		for (int i = 0; i < clubs.size()-1 && !found; i++) {
+		for (int i = 0; i < clubs.size() && !found; i++) {
 			People a = clubs.get(i).findPeople(idOwner);
 			if(a != null){
 				found = true;
 				a.addPet(b);
 			}
-			else if(i == clubs.size()-2){
+			else if(i == clubs.size()-1){
 				throw new ExceptionNoFound(idOwner);
 			}
 		}	
 	}
-	// para eliminar una persona de un club 
+	
+	public People searchPeopleAllClubs(String id) throws ExceptionNoFound{
+		People retorno = null;
+		boolean found = false;
+		for (int i = 0; i < clubs.size() && !found; i++) {
+			retorno = clubs.get(i).findPeople(id);
+			if(retorno != null) {
+				found = true;
+			}
+			else if(i == clubs.size()-1){
+				throw new ExceptionNoFound(id);
+			}
+		}
+		return retorno;
+	}
+	
+//	name archive
+	
+	public String folderSavePeople(int i) {
+		String msj = "";
+		switch(i) {
+		case 1:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePeople/organizeName.txt";
+		case 2:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePeople/organizeLastName.txt";
+		case 3:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePeople/organizeId.txt";
+		case 4:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePeople/organizeDate.txt";
+		case 5:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePeople/organizePet.txt";
+		case 6:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePeople/organize_Pets.txt";
+		
+		}
+		return msj;
+		
+	}
 }

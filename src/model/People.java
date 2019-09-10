@@ -108,6 +108,31 @@ public class People implements Serializable{
 		}
 	}
 	
+	public int cantidadMascotas() {
+		return pets.size();
+	}
+	
+	public void removeAllPets() {
+		int index = 0;
+		while(pets.isEmpty() == true) {	
+			pets.remove(index);
+			index++;
+		}
+			
+	}
+	
+	public void removePet(int i) {
+		pets.remove(i);
+	}
+	
+	public String ShowNamesPets() {
+		String names = "";
+		for (int i = 0; i < pets.size(); i++) {
+			names += i+pets.get(i).getName()+"\n";
+		}
+		return names;
+	}
+	
 	//COMPARACIONES
 	
 	public int compareName(People a) {
@@ -176,6 +201,22 @@ public class People implements Serializable{
 		}
 		else if(compare == 0) {
 			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
+	}
+	
+	public int compareQuantityPets(People a) {
+		int retorno = 0;
+		int compare1 = cantidadMascotas();
+		int compare2 = a.cantidadMascotas();
+		if(compare1 == compare2) {
+			retorno = 0;
+		}
+		else if(compare1 < compare2) {
+			retorno = -1;
 		}
 		else {
 			retorno = 1;

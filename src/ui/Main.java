@@ -1,4 +1,6 @@
 package ui;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Reader;
 import java.text.ParseException;
 import java.util.Date;
@@ -43,7 +45,7 @@ public class Main {
 	public void options(int i) throws ParseException, ExceptionRegistry, ExceptionNoFound {
 		switch(i) {
 		case 1:
-			case1();
+			case1();//problemas
 		case 2:
 			case2();
 		case 3:
@@ -52,8 +54,10 @@ public class Main {
 			relation.addPeople(a, h);
 		case 4:
 		case 5:
+			case5();
 		case 6:
-			
+			case6();
+		case 7:
 		
 		}
 	}
@@ -75,8 +79,33 @@ public class Main {
 		
 	}
 	
+	public void case4() {
+		
+	}
+	
+	public void case5() {
+		System.out.println("ingrese el id del dueño de la mascota");
+		String idOwner = reader.next();
+		try {
+			People e = relation.searchPeopleAllClubs(idOwner);
+			System.out.println("seleccione el numero de la mascota a eliminar"+e.ShowNamesPets());
+			int index = reader.nextInt();
+			e.removePet(index);
+			System.out.println("se ha eliminado...");
+		} catch (ExceptionNoFound e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public void case6() {
-		System.out.println("que va a a ingresar:"+"\n"+"1. si va a ingresar el nombre de la persona a eliminar"+"\n"+"2. si va a ingresar el id de la persona a eliminar");
+		try {
+			System.out.println("ingresar el id de la persona a eliminar");
+			String id = reader.next();
+			relation.removePeople(id);
+		} catch (ExceptionNoFound | FileNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 	
@@ -130,17 +159,55 @@ public class Main {
 		
 		switch(option) {
 		case 1:
-			System.out.println("1. generar listado por nombre");
-			System.out.println("2. generar listado por apellido");
-			System.out.println("3. generar listado por identificacion");
-			System.out.println("4. generar listado por fecha de nacimiento");
-			System.out.println("5. generar listado por mascota de preferencia");
-			System.out.println("6. generar listado de personas con mayor numero de mascotas");
-			
+			generatePeople();
 		case 2:
 		case 3:
 		case 4:
 		}
+		
+	}
+	public void generatePeople() {
+		System.out.println("seleccione el club que le desea ordenar las personas"+"\n"+relation.showNameClubs());
+		int club = reader.nextInt();
+		System.out.println("1. generar listado por nombre");
+		System.out.println("2. generar listado por apellido");
+		System.out.println("3. generar listado por identificacion");
+		System.out.println("4. generar listado por fecha de nacimiento");
+		System.out.println("5. generar listado por mascota de preferencia");
+		System.out.println("6. generar listado de personas con mayor numero de mascotas");
+		int method = reader.nextInt();
+		try {
+			relation.getClubs().get(club).organizePeople(method);
+			System.out.println(relation.folderSavePeople(method));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void generatePet() {
+		System.out.println("ingrese el id del dueño de las mascotas a ordenar");
+		String id = reader.next();
+		try {
+			People a =relation.searchPeopleAllClubs(id);
+		} catch (ExceptionNoFound e) {
+			e.printStackTrace();
+		}
+		System.out.println("1. generar listado por nombre");
+		System.out.println("2. generar listado por identificacion");
+		System.out.println("3. generar listado por fecha de nacimiento");
+		System.out.println("4. generar listado por genero");
+		System.out.println("5. generar listado por tipo de mascotas");
+		int method = reader.nextInt();
+		
+	}
+	
+	public void generateClubes() {
+		System.out.println("1. generar listado por nombre");
+		System.out.println("2. generar listado por identificacion");
+		System.out.println("3. generar listado por fecha de creacion");
+		System.out.println("4. generar listado por tipo de mascota");
+		System.out.println("5. generar listado de clubes  con mayor numero de personas");
+		int method = reader.nextInt();
 		
 	}
 

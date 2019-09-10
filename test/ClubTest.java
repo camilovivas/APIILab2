@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,7 +15,7 @@ class ClubTest {
 	
 	
 	@Test
-	public void organizePeopleNameTest() throws ParseException {
+	public void organizePeopleNameTest() throws ParseException, IOException {
 		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
 		Date d = date.parse("12/06/2012");
 		People a = new People("camilo","vivas", "1006015105",d, "perro");
@@ -30,7 +31,7 @@ class ClubTest {
 		j.addPeople(g);
 		j.addPeople(e);
 		j.addPeople(f);
-		j.organizePeopleName();
+		j.organizePeople(1);
 		String names = "";
 		for (int i = 0; i < j.getOwners().size(); i++) {
 			names += j.getOwners().get(i).getName()+" ";
