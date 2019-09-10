@@ -53,6 +53,7 @@ public class Main {
 			People a = attributesPeople();
 			relation.addPeople(a, h);
 		case 4:
+			case4();
 		case 5:
 			case5();
 		case 6:
@@ -80,6 +81,9 @@ public class Main {
 	}
 	
 	public void case4() {
+		System.out.println("seleccione el numero del club que desea eliminar"+"\n"+relation.showNameClubs());
+		int club = reader.nextInt();
+		relation.removeClub(club);
 		
 	}
 	
@@ -129,7 +133,7 @@ public class Main {
 	}
 	
 	public int namesClubs() {
-		System.out.println(relation.showNameClubs());
+		System.out.println("seleccione el numero del club que desea registrarse"+"\n"+relation.showNameClubs());
 		int club = reader.nextInt();
 		return club;
 	}

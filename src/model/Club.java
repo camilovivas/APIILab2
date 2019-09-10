@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import exception.*;
-import sun.misc.GC.LatencyRequest;
 
 /**
  * @author camilo
@@ -171,6 +170,7 @@ public class Club {
 		int fin = owners.size();
 		People retorno = null;
 		boolean found = false;
+		organizePeopleId();
 		while(inicio<= fin && !found) {
 			int medio = (inicio+fin)/2;
 			if(owners.get(medio).getId().equals(id)) {

@@ -84,6 +84,7 @@ public class Investor {
 		saveClubs();
 	}
 	
+//	ORDENADORES
 	public void organizeClubs(int method) {
 		switch(method) {
 		case 1:
@@ -134,7 +135,7 @@ public class Investor {
 		return found;
 	}
 	
-	
+//	REMOVE
 	public void removePeople(String id) throws ExceptionNoFound, FileNotFoundException {
 		for (int i = 0; i < clubs.size(); i++) {
 			People a = clubs.get(i).findPeople(id);
@@ -148,9 +149,12 @@ public class Investor {
 		}
 	}
 	
+	public void removeClub(int i) {
+		clubs.remove(i);
+	}
+	
 	public String showNameClubs(){
 		String names = "";
-		names += "seleccione el numero del club que desea registrarse"+"\n";
 		for (int i = 0; i < clubs.size(); i++) {
 			names += i+". "+clubs.get(i).getName()+"\n";
 		}

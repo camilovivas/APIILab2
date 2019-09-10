@@ -6,17 +6,15 @@ import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
+import exception.ExceptionNoFound;
 import model.*;
 
 class InvestorTest {
 	Investor investor = new Investor();
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
+	
 	
 	@Test
-	public void configDateTest() throws ParseException {
+	public void configDateTest() throws ParseException {//como compruebo un date?
 		String date = "15/09/2000";
 		Date resultado = investor.configDate(date);
 	}
@@ -34,7 +32,34 @@ class InvestorTest {
 		investor.getClubs().add(c);
 		investor.getClubs().add(e);
 		String names = investor.showNameClubs();
-		assertEquals("seleccione el numero del club que desea registrarse"+"\n"+"0. los michis"+"\n"+"1. los pets"+"\n"+"2. los guao"+"\n"+"3. los miau"+"\n", names);
+		assertEquals("0. los michis"+"\n"+"1. los pets"+"\n"+"2. los guao"+"\n"+"3. los miau"+"\n", names);
+	}
+	
+	@Test
+	public void searchPeopleAllClubsTest() throws ParseException, ExceptionNoFound {
+		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
+		Date d = date.parse("12/06/2012");
+		Club a = new Club("los michis","564",d, "gatos");
+		People a1 = new People("noSoy", "n", "10090", d, "pet");
+		People a2 = new People("noSoy", "n", "10094", d, "pet");
+		People a3 = new People("noSoy", "n", "100905", d, "pet");
+		a.addPeople(a1);
+		a.addPeople(a2);
+		a.addPeople(a3);
+		
+		Club b = new Club("los pets","564",d, "gatos");
+		People b1 = new People("noSoy", "n", "100965", d, "pet");
+		People b2 = new People("noSoy", "n", "10045", d, "pet");
+		People b3= new People("siSoy", "n", "100605", d, "pet");
+		b.addPeople(b1);
+		b.addPeople(b2);
+		b.addPeople(b3);
+		
+		investor.getClubs().add(a);
+		investor.getClubs().add(b);
+		People found = investor.searchPeopleAllClubs("100605");
+		assertEquals("siSoy",found.getName());
+		
 	}
 
 }
