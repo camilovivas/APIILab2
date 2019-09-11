@@ -246,18 +246,16 @@ public class Club {
 	public void savePeopleOrganize(String nameMethod) throws IOException {//problemas al guardar
 		File archive = new File("./files/ordenamientos/organizePeople/organize"+nameMethod+".txt");
 		String save = "";
+		BufferedWriter a = new BufferedWriter(new FileWriter(archive));
 		for (int i = 0; i < owners.size(); i++) {
-			BufferedWriter a = new BufferedWriter(new FileWriter(archive));
 			String name = owners.get(i).getName();
 			String lastName = owners.get(i).getLastName();
 			String id = owners.get(i).getId();
 			Date dateOfBorn = owners.get(i).getDateOfBorn();
 			String pet = owners.get(i).getPetOfPreference();
 			save += (name+ lastName + id + dateOfBorn + pet +"\n");
-			if(i == owners.size()-1) {
-				a.write(save);//aqui
-			}
 		}
+		a.write(save);
 	}
 	
 	//	ORDENAMIENTO
