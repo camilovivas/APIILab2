@@ -86,47 +86,6 @@ public class Investor {
 		saveClubs();
 	}
 	
-//	ORDENADORES
-	public void organizeClubs(int method) {
-		switch(method) {
-		case 1:
-			organizeClubsName();
-			saveClubsOrganize("Name");
-			break;
-		case 2:
-			organizeClubsId();
-			saveClubsOrganize("Id");
-			break;
-		case 3:
-			organizeClubsCreationDate();
-			saveClubsOrganize("Date");
-			break;
-		case 4:
-			organizeClubskindOfpet();
-			saveClubsOrganize("Pet");
-			break;
-		case 5:
-			organizeClubsWhitMorePeople();
-			saveClubsOrganize("Quantity_People");
-			break;
-		}
-	}
-	
-	public void organizeClubsName() {
-		
-	}
-	public void organizeClubsId() {
-		
-	}
-	public void organizeClubsCreationDate() {
-		
-	}
-	public void organizeClubskindOfpet() {
-		
-	}
-	public void organizeClubsWhitMorePeople() {
-		
-	}
 	
 	public void addPeople(People a, int club) throws ExceptionRegistry {
 		if(exist(a) == false){
@@ -292,6 +251,47 @@ public class Investor {
 			break;
 		}
 		return msj;
+	}
+//	ORDENADORES
+	public void organizeClubs(int method) {
+		switch(method) {
+		case 1:
+			organizeClubsName();
+			saveClubsOrganize("Name");
+			break;
+		case 2:
+			organizeClubsId();
+			saveClubsOrganize("Id");
+			break;
+		case 3:
+			organizeClubsCreationDate();
+			saveClubsOrganize("Date");
+			break;
+		case 4:
+			organizeClubskindOfpet();
+			saveClubsOrganize("Pet");
+			break;
+		case 5:
+			organizeClubsWhitMorePeople();
+			saveClubsOrganize("Quantity_People");
+			break;
+		}
+	}
+	
+	public void organizeClubsName() {
+		
+	}
+	public void organizeClubsId() {
+		
+	}
+	public void organizeClubsCreationDate() {
+		
+	}
+	public void organizeClubskindOfpet() {
+		
+	}
+	public void organizeClubsWhitMorePeople() {
+		
 	}
 }
 

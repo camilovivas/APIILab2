@@ -318,6 +318,10 @@ public class Club {
 		}
 	}
 	
+	
+	/**
+	 * This method organize the people by name using insertion sort
+	 */
 	public void organizePeopleId() {
 		for (int i = 1; i < owners.size(); i++) {
 			for (int j = i; j > 0; j--) {

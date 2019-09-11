@@ -38,5 +38,15 @@ class PeopleTest {
 		}
 		assertEquals("andres bosco firulais zapata ", retorno);
 	}
+	
+	@Test
+	public void compareIdTest() throws ParseException {
+		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
+		Date d = date.parse("12/06/2012");
+		People a = new People("camilo","vivas", "15",d, "perro");
+		People b = new People("camilo","vivas", "04",d, "perro");
+		int compare = a.compareId(b);
+		assertEquals(1, compare);
+	}
 
 }

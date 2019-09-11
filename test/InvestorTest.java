@@ -7,6 +7,7 @@ import java.util.Date;
 import org.junit.jupiter.api.Test;
 
 import exception.ExceptionNoFound;
+import exception.ExceptionRegistry;
 import model.*;
 
 class InvestorTest {
@@ -94,5 +95,38 @@ class InvestorTest {
 		assertEquals(true, result);
 	
 	}
+	
+	@Test
+	public void adPetTest() throws ParseException, ExceptionRegistry, ExceptionNoFound {
+		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
+		Date d = date.parse("12/06/2012");
+		Club a = new Club("los michis","564",d, "gatos");
+		People a1 = new People("noSoy", "n", "10090", d, "pet");
+		People a2 = new People("noSoy", "n", "10094", d, "pet");
+		People a3 = new People("noSoy", "n", "100905", d, "pet");
+		a.addPeople(a1);
+		a.addPeople(a2);
+		a.addPeople(a3);
+		
+		Club b = new Club("los pets","564",d, "gatos");
+		People b1 = new People("noSoy", "n", "100965", d, "pet");
+		Pet p1 = new Pet("133","michi",d, "macho","gato");
+		b1.addPet(p1);
+		People b2 = new People("noSoy", "n", "10045", d, "pet");
+		People b3= new People("siSoy", "n", "100605", d, "pet");
+		b.addPeople(b1);
+		b.addPeople(b2);
+		b.addPeople(b3);
+		
+		investor.getClubs().add(a);
+		investor.getClubs().add(b);
+		
+		Pet p2 = new Pet("133","micho",d, "macho","gato");
+		investor.addPet("100965", p2);
+		int quantityPets = b1.cantidadMascotas();
+		assertEquals(1, quantityPets);
+		
+	}
+	
 
 }

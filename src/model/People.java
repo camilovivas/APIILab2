@@ -165,9 +165,14 @@ public class People implements Serializable{
 		return retorno;
 		
 	}
+	/**
+	 * this method compare the id by this person whit other 
+	 * @param a
+	 * @return
+	 */
 	public int compareId(People a) {
 		int retorno = 0;
-		int compare = id.compareToIgnoreCase(a.getId());
+		int compare = id.compareTo(a.getId());
 		if(compare <0) {
 			retorno = -1;
 		}
