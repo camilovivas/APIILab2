@@ -213,7 +213,7 @@ public class Club {
 	 */
 	public boolean exist(String id) {
 		boolean exist = false;
-		for(int i = 0; i>owners.size() && !exist; i++) {
+		for(int i = 0; i<owners.size() && !exist; i++) {
 			if(owners.get(i).getId().equals(id)) {
 				exist = true;
 			}
@@ -264,21 +264,27 @@ public class Club {
 		case 1:
 			organizePeopleName();
 			savePeopleOrganize("Name");
+			break;
 		case 2:
 			organizePeopleLastName();
 			savePeopleOrganize("LastName");
+			break;
 		case 3:
 			organizePeopleId();
 			savePeopleOrganize("Id");
+			break;
 		case 4:
 			organizeDateOfBorn();
 			savePeopleOrganize("Date");
+			break;
 		case 5:
 			organizePetOfpreference();
 			savePeopleOrganize("Pet");
+			break;
 		case 6:
 			organizePeopleWhitMorePets();
 			savePeopleOrganize("More_Pets");
+			break;
 		}
 	}
 	

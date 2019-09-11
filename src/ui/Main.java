@@ -1,11 +1,9 @@
 package ui;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.Reader;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Scanner;
-
 import exception.ExceptionNoFound;
 import exception.ExceptionRegistry;
 import model.*;
@@ -46,18 +44,24 @@ public class Main {
 		switch(i) {
 		case 1:
 			case1();//problemas
+			break;
 		case 2:
 			case2();
+			break;
 		case 3:
 			int h = namesClubs();
 			People a = attributesPeople();
 			relation.addPeople(a, h);
+			break;
 		case 4:
 			case4();
+			break;
 		case 5:
 			case5();
+			break;
 		case 6:
 			case6();
+			break;
 		case 7:
 		
 		}
@@ -68,16 +72,19 @@ public class Main {
 		String name = reader.next();
 		System.out.println("ingrese el numero de identificacion del club");
 		String id = reader.next();
+		String a;
+		Date date = null;
 		try {//problema:no repite
 			System.out.println("ingrese la fecha de creacion del club"+"\n"+"EJEMPLO: DD/MM/YYYY");
-			String a = reader.next();
-			Date date =relation.configDate(a);
+			a = reader.next();
+			date =relation.configDate(a);
 		} catch (ParseException e) {
 			System.out.println("ingrese bien la fecha");
 		}
 		System.out.println("ingrese el tipo de mascotas");
 		String type = reader.next();
-		
+		Club c = new Club(name, id, date, type);
+		relation.addClubs(c);
 	}
 	
 	public void case4() {
@@ -164,9 +171,13 @@ public class Main {
 		switch(option) {
 		case 1:
 			generatePeople();
+			break;
 		case 2:
+			break;
 		case 3:
+			break;
 		case 4:
+			break;
 		}
 		
 	}

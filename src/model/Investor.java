@@ -56,11 +56,12 @@ public class Investor {
 	/**
 	 * this method save the attributes from all clubs in a archive txt
 	 */
-	public void saveClubs() {
+	public void saveClubs() {//ERROR AL GUARDAR
 		File archive = new File("./files/clubs/clubs.txt");
 		String save = "";
 		try {
 			FileWriter escritor = new FileWriter(archive);
+			BufferedWriter s = new BufferedWriter(escritor);
 			for (int i = 0; i < clubs.size(); i++) {
 				//atributos a guardar
 				String name = clubs.get(i).getName();
@@ -68,12 +69,9 @@ public class Investor {
 				Date creationDate = clubs.get(i).getCreationDate();
 				String kindOfPet = clubs.get(i).getKindOfPet();
 				//guardar
-				BufferedWriter s = new BufferedWriter(escritor);
 				save += (name+","+id+","+creationDate+","+kindOfPet+"\n");
-				if(i == (clubs.size())-1){
-					s.write(save);
-				}
 			}
+			s.write(save);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -89,14 +87,19 @@ public class Investor {
 		switch(method) {
 		case 1:
 			organizeClubsName();
+			break;
 		case 2:
 			organizeClubsId();
+			break;
 		case 3:
 			organizeClubsCreationDate();
+			break;
 		case 4:
 			organizeClubskindOfpet();
+			break;
 		case 5:
 			organizeClubsWhitMorePeople();
+			break;
 		}
 	}
 	
@@ -125,6 +128,11 @@ public class Investor {
 		}
 	}
 	
+	/**
+	 * this method check if exist a person in all clubs
+	 * @param a
+	 * @return
+	 */
 	public boolean exist(People a) {
 		boolean found = false;
 		for (int i = 0; i < clubs.size() && !found; i++) {
