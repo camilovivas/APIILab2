@@ -113,6 +113,7 @@ public class Club {
 			file = new FileOutputStream("./files/personas/personas"+name+".arc");
 			ObjectOutputStream object = new ObjectOutputStream(file);
 			object.writeObject(owners);
+			object.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
