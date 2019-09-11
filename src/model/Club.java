@@ -279,11 +279,11 @@ public class Club {
 			break;
 		case 5:
 			organizePetOfpreference();
-			savePeopleOrganize("Pet");
+			savePeopleOrganize("TypePet");
 			break;
 		case 6:
 			organizePeopleWhitMorePets();
-			savePeopleOrganize("More_Pets");
+			savePeopleOrganize("Quantity_Pets");
 			break;
 		}
 	}

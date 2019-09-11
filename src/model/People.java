@@ -224,7 +224,36 @@ public class People implements Serializable{
 		return retorno;
 	}
 	
+	public void savePetsOrganize(String name) {//TODO
+		
+	}
+	
 	//ORDENADORES
+	public void organizePets(int method) {
+		switch(method) {
+		case 1:
+			organizePetName();
+			savePetsOrganize("Name");
+			break;
+		case 2:
+			organizePetId();
+			savePetsOrganize("Id");
+			break;
+		case 3:
+			organizePetDate();
+			savePetsOrganize("Date");
+			break;
+		case 4:
+			organizePetGender();
+			savePetsOrganize("Gender");
+			break;
+		case 5:
+			organizePetKindOfPet();
+			savePetsOrganize("KindOfPet");
+			break;
+		}
+	}
+	
 	/**
 	 * this method organize the pets by name using sort order
 	 */
@@ -244,6 +273,73 @@ public class People implements Serializable{
 			pets.set(cual, tem);
 		}
 	}
+	
+	public void organizePetId() {
+		for (int i = 0; i < pets.size()-1; i++) {
+			Pet menor = pets.get(i);
+			int cual = i;
+			for (int j = i+1; j < pets.size(); j++) {
+				int compare = pets.get(j).compareId(menor);
+				if(compare == -1) {
+					menor = pets.get(j);
+					cual = j;
+				}
+			}
+			Pet tem = pets.get(i);
+			pets.set(i, menor);
+			pets.set(cual, tem);
+		}
+	}
+	public void organizePetDate() {
+		for (int i = 0; i < pets.size()-1; i++) {
+			Pet menor = pets.get(i);
+			int cual = i;
+			for (int j = i+1; j < pets.size(); j++) {
+				int compare = pets.get(j).compareDate(menor);
+				if(compare == -1) {
+					menor = pets.get(j);
+					cual = j;
+				}
+			}
+			Pet tem = pets.get(i);
+			pets.set(i, menor);
+			pets.set(cual, tem);
+		}
+	}
+	public void organizePetGender() {
+		for (int i = 0; i < pets.size()-1; i++) {
+			Pet menor = pets.get(i);
+			int cual = i;
+			for (int j = i+1; j < pets.size(); j++) {
+				int compare = pets.get(j).compareGen(menor);
+				if(compare == -1) {
+					menor = pets.get(j);
+					cual = j;
+				}
+			}
+			Pet tem = pets.get(i);
+			pets.set(i, menor);
+			pets.set(cual, tem);
+		}
+	}
+	public void organizePetKindOfPet() {
+		for (int i = 0; i < pets.size()-1; i++) {
+			Pet menor = pets.get(i);
+			int cual = i;
+			for (int j = i+1; j < pets.size(); j++) {
+				int compare = pets.get(j).compareKindOfPet(menor);
+				if(compare == -1) {
+					menor = pets.get(j);
+					cual = j;
+				}
+			}
+			Pet tem = pets.get(i);
+			pets.set(i, menor);
+			pets.set(cual, tem);
+		}
+	}
+	
+	
 	
 	
 

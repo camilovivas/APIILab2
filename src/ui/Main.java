@@ -63,6 +63,7 @@ public class Main {
 			case6();
 			break;
 		case 7:
+			case7();
 		
 		}
 	}
@@ -173,10 +174,10 @@ public class Main {
 			generatePeople();
 			break;
 		case 2:
+			generatePet();
 			break;
 		case 3:
-			break;
-		case 4:
+			generateClubes();
 			break;
 		}
 		
@@ -202,8 +203,9 @@ public class Main {
 	public void generatePet() {
 		System.out.println("ingrese el id del dueño de las mascotas a ordenar");
 		String id = reader.next();
+		People a = null;
 		try {
-			People a =relation.searchPeopleAllClubs(id);
+			a =relation.searchPeopleAllClubs(id);
 		} catch (ExceptionNoFound e) {
 			e.printStackTrace();
 		}
@@ -213,6 +215,8 @@ public class Main {
 		System.out.println("4. generar listado por genero");
 		System.out.println("5. generar listado por tipo de mascotas");
 		int method = reader.nextInt();
+		a.organizePets(method);
+		System.out.println(relation.folderSavePets(method));
 		
 	}
 	
@@ -221,8 +225,10 @@ public class Main {
 		System.out.println("2. generar listado por identificacion");
 		System.out.println("3. generar listado por fecha de creacion");
 		System.out.println("4. generar listado por tipo de mascota");
-		System.out.println("5. generar listado de clubes  con mayor numero de personas");
+		System.out.println("5. generar listado de clubes con mayor numero de personas");
 		int method = reader.nextInt();
+		relation.organizeClubs(method);
+		System.out.println(relation.folderSaveClubs(method));
 		
 	}
 

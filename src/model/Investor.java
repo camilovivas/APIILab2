@@ -77,6 +77,10 @@ public class Investor {
 		}
 	}
 	
+	public void saveClubsOrganize(String name) {//TODO
+		
+	}
+	
 	public void addClubs(Club a) {
 		clubs.add(a);
 		saveClubs();
@@ -87,18 +91,23 @@ public class Investor {
 		switch(method) {
 		case 1:
 			organizeClubsName();
+			saveClubsOrganize("Name");
 			break;
 		case 2:
 			organizeClubsId();
+			saveClubsOrganize("Id");
 			break;
 		case 3:
 			organizeClubsCreationDate();
+			saveClubsOrganize("Date");
 			break;
 		case 4:
 			organizeClubskindOfpet();
+			saveClubsOrganize("Pet");
 			break;
 		case 5:
 			organizeClubsWhitMorePeople();
+			saveClubsOrganize("Quantity_People");
 			break;
 		}
 	}
@@ -161,6 +170,10 @@ public class Investor {
 		clubs.remove(i);
 	}
 	
+	/**
+	 * this method show names by all clubs
+	 * @return
+	 */
 	public String showNameClubs(){
 		String names = "";
 		for (int i = 0; i < clubs.size(); i++) {
@@ -189,6 +202,12 @@ public class Investor {
 		}	
 	}
 	
+	/**
+	 * this method search a person in all clubs
+	 * @param id
+	 * @return
+	 * @throws ExceptionNoFound
+	 */
 	public People searchPeopleAllClubs(String id) throws ExceptionNoFound{
 		People retorno = null;
 		boolean found = false;
@@ -211,19 +230,68 @@ public class Investor {
 		switch(i) {
 		case 1:
 			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePeople/organizeName.txt";
+			break;
 		case 2:
 			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePeople/organizeLastName.txt";
+			break;
 		case 3:
 			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePeople/organizeId.txt";
+			break;
 		case 4:
 			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePeople/organizeDate.txt";
+			break;
 		case 5:
-			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePeople/organizePet.txt";
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePeople/organizeTypePet.txt";
+			break;
 		case 6:
-			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePeople/organize_Pets.txt";
-		
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePeople/organizeQuantity_Pets.txt";
+			break;
 		}
 		return msj;
-		
+	}
+	
+	public String folderSavePets(int i) {
+		String msj = "";
+		switch(i) {
+		case 1:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePet/organizeName.txt";
+			break;
+		case 2:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePet/organizeId.txt";
+			break;
+		case 3:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePet/organizeDate.txt";
+			break;
+		case 4:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePet/organizeGender.txt";
+			break;
+		case 5:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizePet/organizeKindOfPet.txt";
+			break;
+		}
+		return msj;
+	}
+	
+	public String folderSaveClubs(int i) {
+		String msj = "";
+		switch(i) {
+		case 1:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizeClub/organizeName.txt";
+			break;
+		case 2:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizeClub/organizeId.txt";
+			break;
+		case 3:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizeClub/organizeDate.txt";
+			break;
+		case 4:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizeClub/organizePet.txt";
+			break;
+		case 5:
+			msj += "se ha generado el listado ordenado... lo puedes encontrar en la carpeta ordenamientos/organizeClub/organizeQuantity_People.txt";
+			break;
+		}
+		return msj;
 	}
 }
+
