@@ -1,10 +1,8 @@
 package model;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -72,6 +70,8 @@ public class Investor {
 				save += (name+","+id+","+creationDate+","+kindOfPet+"\n");
 			}
 			s.write(save);
+			escritor.close();
+			s.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

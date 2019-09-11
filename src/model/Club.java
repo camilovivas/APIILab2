@@ -256,6 +256,7 @@ public class Club {
 			save += (name+ lastName + id + dateOfBorn + pet +"\n");
 		}
 		a.write(save);
+		a.close();
 	}
 	
 	//	ORDENAMIENTO
