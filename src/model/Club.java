@@ -90,7 +90,7 @@ public class Club {
 			BufferedReader c = new BufferedReader(new FileReader(archive));
 			String texto;
 			while((texto = c.readLine()) != null){
-				persona += c.readLine();
+				persona += texto;
 				String [] camposPersonas = persona.split(",");
 				SimpleDateFormat change = new SimpleDateFormat("mm/dd/yyyy");
 				Date fechaDate = change.parse(camposPersonas[3]);
@@ -159,7 +159,6 @@ public class Club {
 					if(contable == numberRandom) {
 						ya = true;
 					}
-					
 				}
 			}
 			d.close();
