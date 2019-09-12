@@ -34,17 +34,17 @@ public class Investor {
 		File archive = new File("./files/clubs/clubs.txt");
 		try {
 			BufferedReader lector = new BufferedReader(new FileReader(archive));
-			StringBuffer d = new StringBuffer();
 			String texto;
 			String salida = "";
 			while((texto = lector.readLine())!= null) {
-				salida += d.toString();
+				salida += lector.toString();
 				String [] camposClub = salida.split(",");
 				SimpleDateFormat change = new SimpleDateFormat("dd/mm/yyyy");
 				Date dateClub = change.parse(camposClub[2]);
 				Club e = new Club (camposClub[0], camposClub[1], dateClub, camposClub[3]);
 				clubs.add(e);
 			}
+			lector.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -54,7 +54,7 @@ public class Investor {
 	/**
 	 * this method save the attributes from all clubs in a archive txt
 	 */
-	public void saveClubs() {//ERROR AL GUARDAR
+	public void saveClubs() {
 		File archive = new File("./files/clubs/clubs.txt");
 		String save = "";
 		try {

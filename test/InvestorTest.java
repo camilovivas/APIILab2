@@ -1,5 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -96,7 +98,7 @@ class InvestorTest {
 	
 	}
 	
-	@Test
+//	@Test
 	public void adPetTest() throws ParseException, ExceptionRegistry, ExceptionNoFound {
 		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
 		Date d = date.parse("12/06/2012");
@@ -125,6 +127,16 @@ class InvestorTest {
 		investor.addPet("100965", p2);
 		int quantityPets = b1.cantidadMascotas();
 		assertEquals(1, quantityPets);
+		
+	}
+	@Test
+	public void createWorld() throws ParseException, IOException, ExceptionRegistry {
+		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
+		Date d = date.parse("12/06/2012");
+		Club a = new  Club("los animales", "465312", d, "cualquiera");
+		investor.addClubs(a);
+		a.chargePeople();
+		a.addPetToPeople();
 		
 	}
 	

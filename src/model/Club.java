@@ -90,14 +90,14 @@ public class Club {
 			BufferedReader c = new BufferedReader(new FileReader(archive));
 			String texto;
 			while((texto = c.readLine()) != null){
-				persona += c.toString();
+				persona += c.readLine();
 				String [] camposPersonas = persona.split(",");
 				SimpleDateFormat change = new SimpleDateFormat("mm/dd/yyyy");
 				Date fechaDate = change.parse(camposPersonas[3]);
-				People ensayo = new People(camposPersonas[0], camposPersonas[1], camposPersonas[2], fechaDate, camposPersonas[4] );
+				People ensayo = new People(camposPersonas[1], camposPersonas[2], camposPersonas[0], fechaDate, camposPersonas[4] );
 				owners.add(ensayo);
 			}
-				
+			c.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -137,7 +137,7 @@ public class Club {
 	//this method only used 1 times
 	public void addPetToPeople() throws IOException, ParseException, ExceptionRegistry {
 		String pet ="";
-		File archive = new File("C:");
+		File archive = new File("./files/MASCOTAS.csv");
 		try {
 			BufferedReader d = new BufferedReader(new FileReader(archive));
 			String tex;
@@ -150,11 +150,10 @@ public class Club {
 					Date fechaDate = change.parse(camposPet[2]);
 					Pet e = new Pet(camposPet[0],camposPet[1],fechaDate,camposPet[3],camposPet[4]);
 					owners.get(i).addPet(e);
-					if(i == owners.size()-1) {
-						savePeople();
-					}
 				}
 			}
+			d.close();
+			savePeople();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -244,7 +243,7 @@ public class Club {
 	 * @param nameMethod
 	 * @throws IOException
 	 */
-	public void savePeopleOrganize(String nameMethod) throws IOException {//problemas al guardar
+	public void savePeopleOrganize(String nameMethod) throws IOException {
 		File archive = new File("./files/ordenamientos/organizePeople/organize"+nameMethod+".txt");
 		String save = "";
 		BufferedWriter a = new BufferedWriter(new FileWriter(archive));
@@ -254,13 +253,13 @@ public class Club {
 			String id = owners.get(i).getId();
 			Date dateOfBorn = owners.get(i).getDateOfBorn();
 			String pet = owners.get(i).getPetOfPreference();
-			save += (name+ lastName + id + dateOfBorn + pet +"\n");
+			save += (name+" "+ lastName+" " + id+" " + dateOfBorn+" " + pet +"\n");
 		}
 		a.write(save);
 		a.close();
 	}
 	
-	//	ORDENAMIENTO
+	//	ORDENADORES
 	public void organizePeople(int method) throws IOException {
 		switch(method) {
 		case 1:

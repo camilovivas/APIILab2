@@ -1,5 +1,9 @@
 package model;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -133,108 +137,25 @@ public class People implements Serializable{
 		return names;
 	}
 	
-	//COMPARACIONES
 	
-	public int compareName(People a) {
-		int retorno = 0;
-		int compare = name.compareToIgnoreCase(a.getName());
-		if(compare <0) {
-			retorno = -1;
+	public void savePetsOrganize(String methodName) throws IOException {
+		File archive = new File("./files/ordenamientos/organizePet/organize"+methodName+".txt");
+		String save = "";
+		BufferedWriter a = new BufferedWriter(new FileWriter(archive));
+		for (int i = 0; i < pets.size(); i++) {
+			String id = pets.get(i).getId();
+			String name = pets.get(i).getName();
+			Date date = pets.get(i).getDateBorn();
+			String gender = pets.get(i).getGender();
+			String kindOfPet = pets.get(i).getKindOfPet();
+			save += (id+" "+ name+" "+ date+" "+ gender+" "+ kindOfPet+"\n");
 		}
-		else if(compare == 0) {
-			retorno = 0;
-		}
-		else {
-			retorno = 1;
-		}
-		return retorno;
-		
-	}
-	public int comparelastName(People a) {
-		int retorno = 0;
-		int compare = lastName.compareToIgnoreCase(a.getLastName());
-		if(compare <0) {
-			retorno = -1;
-		}
-		else if(compare == 0) {
-			retorno = 0;
-		}
-		else {
-			retorno = 1;
-		}
-		return retorno;
-		
-	}
-	/**
-	 * this method compare the id by this person whit other 
-	 * @param a
-	 * @return
-	 */
-	public int compareId(People a) {
-		int retorno = 0;
-		int compare = id.compareTo(a.getId());
-		if(compare <0) {
-			retorno = -1;
-		}
-		else if(compare == 0) {
-			retorno = 0;
-		}
-		else {
-			retorno = 1;
-		}
-		return retorno;
-	}
-	public int compareDate(People a) {
-		int retorno = 0;
-		int compare = dateOfBorn.compareTo(a.getDateOfBorn());
-		if(compare <0) {
-			retorno = -1;
-		}
-		else if(compare == 0) {
-			retorno = 0;
-		}
-		else {
-			retorno = 1;
-		}
-		return retorno;
-	}
-	public int comparePetOfPreference(People a) {
-		int retorno = 0;
-		int compare = petOfPreference.compareToIgnoreCase(a.getPetOfPreference());
-		if(compare <0) {
-			retorno = -1;
-		}
-		else if(compare == 0) {
-			retorno = 0;
-		}
-		else {
-			retorno = 1;
-		}
-		return retorno;
-	}
-	
-	public int compareQuantityPets(People a) {
-		int retorno = 0;
-		int compare1 = cantidadMascotas();
-		int compare2 = a.cantidadMascotas();
-		if(compare1 == compare2) {
-			retorno = 0;
-		}
-		else if(compare1 < compare2) {
-			retorno = -1;
-		}
-		else {
-			retorno = 1;
-		}
-		return retorno;
-	}
-	
-	public void savePetsOrganize(String name) {//TODO
-		
+		a.write(save);
+		a.close();
 	}
 	
 	//ORDENADORES
-	public void organizePets(int method) {
+	public void organizePets(int method) throws IOException {
 		switch(method) {
 		case 1:
 			organizePetName();
@@ -343,9 +264,100 @@ public class People implements Serializable{
 			pets.set(cual, tem);
 		}
 	}
-	
-	
-	
-	
 
+	//COMPARACIONES
+	
+	public int compareName(People a) {
+		int retorno = 0;
+		int compare = name.compareToIgnoreCase(a.getName());
+		if(compare <0) {
+			retorno = -1;
+		}
+		else if(compare == 0) {
+			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
+		
+	}
+	public int comparelastName(People a) {
+		int retorno = 0;
+		int compare = lastName.compareToIgnoreCase(a.getLastName());
+		if(compare <0) {
+			retorno = -1;
+		}
+		else if(compare == 0) {
+			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
+		
+	}
+	/**
+	 * this method compare the id by this person whit other 
+	 * @param a
+	 * @return
+	 */
+	public int compareId(People a) {
+		int retorno = 0;
+		int compare = id.compareTo(a.getId());
+		if(compare <0) {
+			retorno = -1;
+		}
+		else if(compare == 0) {
+			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
+	}
+	public int compareDate(People a) {
+		int retorno = 0;
+		int compare = dateOfBorn.compareTo(a.getDateOfBorn());
+		if(compare <0) {
+			retorno = -1;
+		}
+		else if(compare == 0) {
+			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
+	}
+	public int comparePetOfPreference(People a) {
+		int retorno = 0;
+		int compare = petOfPreference.compareToIgnoreCase(a.getPetOfPreference());
+		if(compare <0) {
+			retorno = -1;
+		}
+		else if(compare == 0) {
+			retorno = 0;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
+	}
+	
+	public int compareQuantityPets(People a) {
+		int retorno = 0;
+		int compare1 = cantidadMascotas();
+		int compare2 = a.cantidadMascotas();
+		if(compare1 == compare2) {
+			retorno = 0;
+		}
+		else if(compare1 < compare2) {
+			retorno = -1;
+		}
+		else {
+			retorno = 1;
+		}
+		return retorno;
+	}
 }

@@ -215,7 +215,11 @@ public class Main {
 		System.out.println("4. generar listado por genero");
 		System.out.println("5. generar listado por tipo de mascotas");
 		int method = reader.nextInt();
-		a.organizePets(method);
+		try {
+			a.organizePets(method);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		System.out.println(relation.folderSavePets(method));
 		
 	}
