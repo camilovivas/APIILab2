@@ -138,18 +138,22 @@ public class Club {
 	public void addPetToPeople() throws IOException, ParseException, ExceptionRegistry {
 		String pet ="";
 		File archive = new File("./files/MASCOTAS.csv");
+		int contable = 0;
+		boolean ya = false;
 		try {
 			BufferedReader d = new BufferedReader(new FileReader(archive));
 			String tex;
 			for (int i = 0; i < owners.size(); i++) {
 				int numberRandom = (int) (Math.random()*3);
-				while((tex = d.readLine())!= null && numberRandom>0) {
-					pet += d.toString();
+				while((tex = d.readLine())!= null && !ya) {
+					pet = tex;
 					String [] camposPet = pet.split(",");
 					SimpleDateFormat change =  new SimpleDateFormat("dd/mm/yyyy");
 					Date fechaDate = change.parse(camposPet[2]);
 					Pet e = new Pet(camposPet[0],camposPet[1],fechaDate,camposPet[3],camposPet[4]);
 					owners.get(i).addPet(e);
+					contable++;
+					
 				}
 			}
 			d.close();

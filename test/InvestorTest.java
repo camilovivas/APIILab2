@@ -129,13 +129,27 @@ class InvestorTest {
 		assertEquals(1, quantityPets);
 		
 	}
-	@Test
+//	@Test
 	public void createWorld() throws ParseException, IOException, ExceptionRegistry {
 		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
 		Date d = date.parse("12/06/2012");
 		Club a = new  Club("los animales", "465312", d, "cualquiera");
 		investor.addClubs(a);
 		a.chargePeople();
+		a.addPetToPeople();
+		
+	}
+	
+	@Test
+	public void addPetToPeople() throws ParseException, IOException, ExceptionRegistry {
+		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
+		Date d = date.parse("12/06/2012");
+		Club a = new  Club("los animales", "465312", d, "cualquiera");
+		investor.addClubs(a);
+		People b2 = new People("noSoy", "n", "10045", d, "pet");
+		People b3= new People("siSoy", "n", "100605", d, "pet");
+		a.addPeople(b2);
+		a.addPeople(b3);
 		a.addPetToPeople();
 		
 	}
