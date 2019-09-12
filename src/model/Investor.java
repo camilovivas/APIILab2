@@ -37,7 +37,7 @@ public class Investor {
 			String texto;
 			String salida = "";
 			while((texto = lector.readLine())!= null) {
-				salida += texto;
+				salida = texto;
 				String [] camposClub = salida.split(",");
 				SimpleDateFormat change = new SimpleDateFormat("dd/mm/yyyy");
 				Date dateClub = change.parse(camposClub[2]);

@@ -90,7 +90,7 @@ public class Club {
 			BufferedReader c = new BufferedReader(new FileReader(archive));
 			String texto;
 			while((texto = c.readLine()) != null){
-				persona += texto;
+				persona = texto;
 				String [] camposPersonas = persona.split(",");
 				SimpleDateFormat change = new SimpleDateFormat("mm/dd/yyyy");
 				Date fechaDate = change.parse(camposPersonas[3]);
