@@ -40,6 +40,7 @@ public class Club {
 		this.creationDate = creationDate;
 		this.kindOfPet = kindOfPet;
 		owners = new ArrayList<People>();
+	
 	}
 	
 	public String getName() {
@@ -180,7 +181,7 @@ public class Club {
 		People retorno = null;
 		boolean found = false;
 		organizePeopleId();
-		while(inicio<= fin && !found) {
+		while(inicio< fin && !found) {
 			int medio = (inicio+fin)/2;
 			if(owners.get(medio).getId().equals(id)) {
 				found = true;
@@ -195,9 +196,17 @@ public class Club {
 		}
 		return retorno;
 	}
+	
+	
+	/**
+	 * this method delete people by club
+	 * @param id id by people to delete
+	 * @throws FileNotFoundException
+	 */
 	public void removePeople(String id) throws FileNotFoundException {
 		int inicio = 0;
 		int fin = owners.size();
+		organizePeopleId();
 		boolean found = false;
 		while(inicio<= fin && !found) {
 			int medio = (inicio+fin)/2;
@@ -269,6 +278,11 @@ public class Club {
 	}
 	
 	//	ORDENADORES
+	/**
+	 * this method organize and save people
+	 * @param method
+	 * @throws IOException
+	 */
 	public void organizePeople(int method) throws IOException {
 		switch(method) {
 		case 1:
@@ -315,6 +329,9 @@ public class Club {
 		
 	}
 	
+	/**
+	 * This method organize the people by  last name using insertion sort
+	 */
 	public void organizePeopleLastName() {
 		for (int i = 1; i < owners.size(); i++) {
 			for (int j = i; j > 0; j--) {
@@ -345,6 +362,9 @@ public class Club {
 		}
 	}
 	
+	/**
+	 * This method organize the people by Date using insertion sort
+	 */
 	public void organizeDateOfBorn() {
 		for (int i = 1; i < owners.size(); i++) {
 			for (int j = i; j > 0; j--) {
@@ -358,6 +378,9 @@ public class Club {
 		}
 	}
 	
+	/**
+	 * This method organize the people by pet of preference using insertion sort
+	 */
 	public void organizePetOfpreference() {
 		for (int i = 1; i < owners.size(); i++) {
 			for (int j = i; j > 0; j--) {
@@ -371,6 +394,9 @@ public class Club {
 		}
 	}
 	
+	/**
+	 * This method organize the people by quantity of pets using insertion sort
+	 */
 	public void organizePeopleWhitMorePets() {
 		for (int i = 1; i < owners.size(); i++) {
 			for (int j = i; j > 0; j--) {

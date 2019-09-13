@@ -3,6 +3,10 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author camilo
+ *
+ */
 public class Pet implements Serializable{
 	private String id;
 	private String name;
@@ -59,6 +63,12 @@ public class Pet implements Serializable{
 	}
 	
 	//COMPARACIONES
+	
+	/**
+	 * this method compare the name whit other pet
+	 * @param a pet to compare
+	 * @return 1 if is higher, 0 if is equals or -1 if is less
+	 */
 	public int compareName(Pet a ) {
 		int retorno = 0;
 		int compare = name.compareToIgnoreCase(a.getName());
@@ -75,6 +85,11 @@ public class Pet implements Serializable{
 		return retorno;
 	}
 	
+	/**
+	 * this method compare the id whit other pet
+	 * @param a pet to compare
+	 * @return 1 if is higher, 0 if is equals or -1 if is less
+	 */
 	public int compareId(Pet a ) {
 		int retorno = 0;
 		int compare = id.compareToIgnoreCase(a.getId());
@@ -90,6 +105,11 @@ public class Pet implements Serializable{
 		return retorno;
 	}
 	
+	/**
+	 * this method compare the Date whit other pet
+	 * @param a pet to compare
+	 * @return 1 if is higher, 0 if is equals or -1 if is less
+	 */
 	public int compareDate(Pet a) {
 		int retorno = 0;
 		int compare = dateBorn.compareTo(a.getDateBorn());
@@ -105,6 +125,11 @@ public class Pet implements Serializable{
 		return retorno;
 	}
 	
+	/**
+	 * this method compare the gender whit other pet
+	 * @param a pet to compare
+	 * @return 1 if is higher, 0 if is equals or -1 if is less
+	 */
 	public int compareGen(Pet a) {
 		int retorno = 0;
 		int compare = gender.compareToIgnoreCase(a.getGender());
@@ -120,6 +145,11 @@ public class Pet implements Serializable{
 		return retorno;
 	}
 	
+	/**
+	 * this method compare the kind of pet whit other pet
+	 * @param a pet to compare
+	 * @return 1 if is higher, 0 if is equals or -1 if is less
+	 */
 	public int compareKindOfPet(Pet a) {
 		int retorno = 0;
 		int compare = kindOfPet.compareToIgnoreCase(a.kindOfPet);

@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -86,6 +87,23 @@ class ClubTest {
 		j.addPeople(e);
 		boolean result = j.exist("1006015105");
 		assertEquals(true, result);
+	}
+	
+	@Test
+	public void removePeople() throws ParseException, FileNotFoundException {
+		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
+		Date d = date.parse("12/06/2012");
+		Club j = new Club("los perros", "128942",d ,"peros");
+		People a = new People("camilo","vivas", "1006015105",d, "perro");
+		People b = new People("andres","vivas", "1006015106",d, "perro");
+		People c = new People("brayan","vivas", "1006015102",d, "perro");
+		j.addPeople(a);
+		j.addPeople(b);
+		j.addPeople(c);
+		j.removePeople("1006015106");
+		int quantity = j.getOwners().size();
+		assertEquals(2, quantity);
+		
 	}
 	
 	

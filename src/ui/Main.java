@@ -13,14 +13,16 @@ public class Main {
 	private Investor relation;
 	private Scanner	reader;
 	
-	public Main() throws ParseException, ExceptionRegistry, ExceptionNoFound {
+	public Main() throws ParseException, ExceptionRegistry, ExceptionNoFound, IOException {
 		reader = new Scanner(System.in);
 		relation = new Investor();
+		relation.chargeClubs();
+		relation.chargePeopleAndPet();
 		int i = menu();
 		options(i);
 	}
 	
-	public static void main(String[] args) throws ParseException, ExceptionRegistry, ExceptionNoFound {
+	public static void main(String[] args) throws ParseException, ExceptionRegistry, ExceptionNoFound, IOException {
 		Main m = new Main();
 		
 
@@ -43,7 +45,7 @@ public class Main {
 	public void options(int i) throws ParseException, ExceptionRegistry, ExceptionNoFound {
 		switch(i) {
 		case 1:
-			case1();//problemas
+			case1();
 			break;
 		case 2:
 			case2();
@@ -75,7 +77,7 @@ public class Main {
 		String id = reader.next();
 		String a;
 		Date date = null;
-		try {//problema:no repite
+		try {
 			System.out.println("ingrese la fecha de creacion del club"+"\n"+"EJEMPLO: DD/MM/YYYY");
 			a = reader.next();
 			date =relation.configDate(a);
@@ -231,7 +233,11 @@ public class Main {
 		System.out.println("4. generar listado por tipo de mascota");
 		System.out.println("5. generar listado de clubes con mayor numero de personas");
 		int method = reader.nextInt();
-		relation.organizeClubs(method);
+		try {
+			relation.organizeClubs(method);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		System.out.println(relation.folderSaveClubs(method));
 		
 	}

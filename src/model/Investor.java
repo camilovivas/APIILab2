@@ -20,6 +20,7 @@ public class Investor {
 
 	public Investor() {
 		clubs = new ArrayList<Club>();
+		
 	}
 	
 	public ArrayList<Club> getClubs() {
@@ -30,6 +31,11 @@ public class Investor {
 		this.clubs = clubs;
 	}
 
+	/**
+	 * this method import the clubs from archive plane
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public void chargeClubs() throws IOException, ParseException {
 		File archive = new File("./files/clubs/clubs.txt");
 		try {
@@ -39,7 +45,7 @@ public class Investor {
 			while((texto = lector.readLine())!= null) {
 				salida = texto;
 				String [] camposClub = salida.split(",");
-				SimpleDateFormat change = new SimpleDateFormat("dd/mm/yyyy");
+				SimpleDateFormat change = new SimpleDateFormat("dd/MM/yyyy");
 				Date dateClub = change.parse(camposClub[2]);
 				Club e = new Club (camposClub[0], camposClub[1], dateClub, camposClub[3]);
 				clubs.add(e);
@@ -48,8 +54,19 @@ public class Investor {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
 	
-		
+	/**
+	 * this method import the people of all clubs from archive serializable
+	 */
+	public void chargePeopleAndPet() {
+		for (int i = 0; i < clubs.size(); i++) {
+			try {
+				clubs.get(i).importPeople();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	/**
 	 * this method save the attributes from all clubs in a archive txt
@@ -65,9 +82,11 @@ public class Investor {
 				String name = clubs.get(i).getName();
 				String id = clubs.get(i).getId();
 				Date creationDate = clubs.get(i).getCreationDate();
+				SimpleDateFormat a = new SimpleDateFormat("dd/MM/yyyy");
+				String date = a.format(creationDate);
 				String kindOfPet = clubs.get(i).getKindOfPet();
 				//guardar
-				save += (name+","+id+","+creationDate+","+kindOfPet+"\n");
+				save += (name+","+id+","+date+","+kindOfPet+"\n");
 			}
 			s.write(save);
 			s.close();
@@ -77,16 +96,44 @@ public class Investor {
 		}
 	}
 	
-	public void saveClubsOrganize(String name) {//TODO
-		
+	
+	/**
+	 * this method save the clubs organized
+	 * @param nameMethod name by archive
+	 * @throws IOException
+	 */
+	public void saveClubsOrganize(String nameMethod) throws IOException {
+		File archive = new File("./files/ordenamientos/organizeClub/organize"+nameMethod+".txt");
+		String save = "";
+		BufferedWriter a = new BufferedWriter(new FileWriter(archive));
+		for (int i = 0; i < clubs.size(); i++) {
+			String name = clubs.get(i).getName();
+			String id = clubs.get(i).getId();
+			Date dateOfBorn = clubs.get(i).getCreationDate();
+			String pet = clubs.get(i).getKindOfPet();
+			save += (name+" "+  id+" " + dateOfBorn+" " + pet +"\n");
+		}
+		a.write(save);
+		a.close();
 	}
 	
+	
+	/**
+	 * this method save an add a club
+	 * @param a club to add
+	 */
 	public void addClubs(Club a) {
 		clubs.add(a);
 		saveClubs();
 	}
 	
 	
+	/**
+	 * this method add people to a club 
+	 * @param a people to add
+	 * @param club club has been add
+	 * @throws ExceptionRegistry
+	 */
 	public void addPeople(People a, int club) throws ExceptionRegistry {
 		if(exist(a) == false){
 			clubs.get(club).addPeople(a);
@@ -98,7 +145,7 @@ public class Investor {
 	
 	/**
 	 * this method check if exist a person in all clubs
-	 * @param a
+	 * @param a people to find
 	 * @return
 	 */
 	public boolean exist(People a) {
@@ -141,12 +188,25 @@ public class Investor {
 		return names;
 	}
 	
+	/**
+	 * this method convert String to Date
+	 * @param date String to convert
+	 * @return String converted
+	 * @throws ParseException
+	 */
 	public Date configDate(String date) throws ParseException {
 		SimpleDateFormat a = new SimpleDateFormat("dd/mm/yyyy");
 		Date b = a.parse(date);
 		return b;
 	}
 	
+	/**
+	 * this method add pets by the id of its owner
+	 * @param idOwner identification by owner
+	 * @param b pet to add
+	 * @throws ExceptionRegistry
+	 * @throws ExceptionNoFound
+	 */
 	public void addPet(String idOwner, Pet b) throws ExceptionRegistry, ExceptionNoFound {
 		boolean found = false;
 		for (int i = 0; i < clubs.size() && !found; i++) {
@@ -182,8 +242,13 @@ public class Investor {
 		return retorno;
 	}
 	
-//	name archive
+//	NAME ARCHIVE
 	
+	/**
+	 * this method show where are the archive.txt whit the people organized
+	 * @param i type of sort
+	 * @return a String whit the direction 
+	 */
 	public String folderSavePeople(int i) {
 		String msj = "";
 		switch(i) {
@@ -209,6 +274,11 @@ public class Investor {
 		return msj;
 	}
 	
+	/**
+	 * this method show where are the archive.txt whit the pets organized
+	 * @param i type of sort
+	 * @return a String whit the direction 
+	 */
 	public String folderSavePets(int i) {
 		String msj = "";
 		switch(i) {
@@ -231,6 +301,11 @@ public class Investor {
 		return msj;
 	}
 	
+	/**
+	 * this method show where are the archive.txt whit the clubs organized
+	 * @param i type of sort
+	 * @return a String whit the direction 
+	 */
 	public String folderSaveClubs(int i) {
 		String msj = "";
 		switch(i) {
@@ -253,7 +328,13 @@ public class Investor {
 		return msj;
 	}
 //	ORDENADORES
-	public void organizeClubs(int method) {
+	
+	/**
+	 * -this method organize and save clubs
+	 * @param method criterio a ordenar
+	 * @throws IOException
+	 */
+	public void organizeClubs(int method) throws IOException {
 		switch(method) {
 		case 1:
 			organizeClubsName();
@@ -278,20 +359,85 @@ public class Investor {
 		}
 	}
 	
+	
+	/**
+	 * This method organize the clubs by name using the method bubble sort
+	 */
 	public void organizeClubsName() {
-		
+		for (int i = clubs.size(); i > 0 ; i--) {
+			for (int j = 0; j  < i-1; j++) {
+				int compare = clubs.get(j).compareName(clubs.get(j+1));
+				if (compare == 1) {
+					Club temp = clubs.get(j);
+					clubs.set(j, clubs.get(j+1));
+					clubs.set(j+1, temp);
+				}
+			}
+		}
 	}
+	
+	/**
+	 * This method organize the clubs by identification using the method bubble sort
+	 */
 	public void organizeClubsId() {
-		
+		for (int i = clubs.size(); i > 0 ; i--) {
+			for (int j = 0; j  < i-1; j++) {
+				int compare = clubs.get(j).compareId(clubs.get(j+1));
+				if (compare == 1) {
+					Club temp = clubs.get(j);
+					clubs.set(j, clubs.get(j+1));
+					clubs.set(j+1, temp);
+				}
+			}
+		}
 	}
+	
+	/**
+	 * This method organize the clubs by date using the method bubble sort
+	 */
 	public void organizeClubsCreationDate() {
-		
+		for (int i = clubs.size(); i > 0 ; i--) {
+			for (int j = 0; j  < i-1; j++) {
+				int compare = clubs.get(j).compareDate(clubs.get(j+1));
+				if (compare == 1) {
+					Club temp = clubs.get(j);
+					clubs.set(j, clubs.get(j+1));
+					clubs.set(j+1, temp);
+				}
+			}
+		}
 	}
+	
+	/**
+	 * This method organize the clubs by kind of pet using the method bubble sort
+	 */
 	public void organizeClubskindOfpet() {
-		
+		for (int i = clubs.size(); i > 0 ; i--) {
+			for (int j = 0; j  < i-1; j++) {
+				int compare = clubs.get(j).compareKindOfPet(clubs.get(j+1));
+				if (compare == 1) {
+					Club temp = clubs.get(j);
+					clubs.set(j, clubs.get(j+1));
+					clubs.set(j+1, temp);
+				}
+			}
+		}
 	}
+	
+	/**
+	 * This method organize the clubs by quantity of pets using the method bubble sort
+	 */
 	public void organizeClubsWhitMorePeople() {
-		
+		for (int i = clubs.size(); i > 0 ; i--) {
+			for (int j = 0; j  < i-1; j++) {
+				int compare = clubs.get(j).compareQuantityPeople(clubs.get(j+1));
+				if (compare == 1) {
+					Club temp = clubs.get(j);
+					clubs.set(j, clubs.get(j+1));
+					clubs.set(j+1, temp);
+				}
+			}
+		}
 	}
 }
 

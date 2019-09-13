@@ -1,13 +1,9 @@
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.junit.jupiter.api.Test;
-
 import exception.ExceptionNoFound;
 import exception.ExceptionRegistry;
 import model.*;
@@ -16,18 +12,15 @@ class InvestorTest {
 	Investor investor = new Investor();
 	
 	
-	@Test
-	public void configDateTest() throws ParseException {//como compruebo un date?
-		String date = "30/9/2000";
-		Date resultado = investor.configDate(date);
-	}
+
 	
 	/**
 	 * this method check the method showNameClubs and saveClubs
 	 * @throws ParseException
+	 * @throws IOException 
 	 */
 	@Test
-	public void showNameClubsTest() throws ParseException {
+	public void showNameClubsTest() throws ParseException, IOException {
 		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
 		Date d = date.parse("12/06/2012");
 		Club a = new Club("los michis","564",d, "gatos");
@@ -98,13 +91,13 @@ class InvestorTest {
 	
 	}
 	
-//	@Test
-	public void adPetTest() throws ParseException, ExceptionRegistry, ExceptionNoFound {
+	@Test
+	public void addPetTest() throws ParseException, ExceptionRegistry, ExceptionNoFound {
 		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
 		Date d = date.parse("12/06/2012");
 		Club a = new Club("los michis","564",d, "gatos");
-		People a1 = new People("noSoy", "n", "10090", d, "pet");
-		People a2 = new People("noSoy", "n", "10094", d, "pet");
+		People a1 = new People("noSoy", "n", "100900", d, "pet");
+		People a2 = new People("noSoy", "n", "100940", d, "pet");
 		People a3 = new People("noSoy", "n", "100905", d, "pet");
 		a.addPeople(a1);
 		a.addPeople(a2);
@@ -114,7 +107,7 @@ class InvestorTest {
 		People b1 = new People("noSoy", "n", "100965", d, "pet");
 		Pet p1 = new Pet("133","michi",d, "macho","gato");
 		b1.addPet(p1);
-		People b2 = new People("noSoy", "n", "10045", d, "pet");
+		People b2 = new People("noSoy", "n", "100450", d, "pet");
 		People b3= new People("siSoy", "n", "100605", d, "pet");
 		b.addPeople(b1);
 		b.addPeople(b2);
@@ -126,7 +119,7 @@ class InvestorTest {
 		Pet p2 = new Pet("133","micho",d, "macho","gato");
 		investor.addPet("100965", p2);
 		int quantityPets = b1.cantidadMascotas();
-		assertEquals(1, quantityPets);
+		assertEquals(2, quantityPets);
 		
 	}
 	@Test
@@ -154,5 +147,98 @@ class InvestorTest {
 		
 	}
 	
+	@Test
+	public void chargeClubsTest() throws IOException, ParseException {
+		investor.chargeClubs();
+		int tamanio = investor.getClubs().size();
+		assertEquals(1, tamanio);
+	}
+	
+	@Test
+	public void organizeClubsNameTest() throws ParseException, IOException {
+		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
+		Date d = date.parse("12/06/2012");
+		Club a = new  Club("los animales", "465312", d, "cualquiera");
+		Club b = new  Club("animales tiernos", "465312", d, "cualquiera");
+		Club c = new  Club("becerros sin rienda", "465312", d, "cualquiera");
+		investor.getClubs().add(a);
+		investor.getClubs().add(b);
+		investor.getClubs().add(c);
+		investor.organizeClubs(1);
+		String name = "";
+		for (int i = 0; i < investor.getClubs().size(); i++) {
+			name += investor.getClubs().get(i).getName()+" ";
+		}
+		assertEquals("animales tiernos becerros sin rienda los animales ", name);
+	}
+	
+	@Test
+	public void organizeClubsIdTest() throws ParseException, IOException {
+		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
+		Date d = date.parse("12/06/2012");
+		Club a = new  Club("los animales", "52", d, "cualquiera");
+		Club b = new  Club("animales tiernos", "10", d, "cualquiera");
+		Club c = new  Club("becerros sin rienda", "30", d, "cualquiera");
+		investor.getClubs().add(a);
+		investor.getClubs().add(b);
+		investor.getClubs().add(c);
+		investor.organizeClubs(2);
+		String name = "";
+		for (int i = 0; i < investor.getClubs().size(); i++) {
+			name += investor.getClubs().get(i).getId()+" ";
+		}
+		assertEquals("10 30 52 ", name);
+	}
+	
+	@Test
+	public void organizeClubsKindOfPetTest() throws ParseException, IOException {
+		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
+		Date d = date.parse("12/06/2012");
+		Club a = new  Club("los animales", "465312", d, "perros");
+		Club b = new  Club("animales tiernos", "465312", d, "aves");
+		Club c = new  Club("becerros sin rienda", "465312", d, "zorros");
+		investor.getClubs().add(a);
+		investor.getClubs().add(b);
+		investor.getClubs().add(c);
+		investor.organizeClubs(4);
+		String name = "";
+		for (int i = 0; i < investor.getClubs().size(); i++) {
+			name += investor.getClubs().get(i).getKindOfPet()+" ";
+		}
+		assertEquals("aves perros zorros ", name);
+	}
+	
+	@Test
+	public void organizeClubsWhitMorePeopleTest() throws ParseException, IOException {
+		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
+		Date d = date.parse("12/06/2012");
+		Club a = new  Club("los animales", "465312", d, "cualquiera");
+		People a1 = new People("noSoy", "n", "10045", d, "pet");
+		a.addPeople(a1);
+		
+		Club b = new  Club("animales tiernos", "465312", d, "cualquiera");
+		People b1 = new People("noSoy", "n", "10045", d, "pet");
+		People b2 = new People("noSoy", "n", "10045", d, "pet");
+		b.addPeople(b1);
+		b.addPeople(b2);
+
+		Club c = new  Club("becerros sin rienda", "465312", d, "cualquiera");
+		People c1 = new People("noSoy", "n", "10045", d, "pet");
+		People c2 = new People("noSoy", "n", "10045", d, "pet");
+		People c3 = new People("noSoy", "n", "10045", d, "pet");
+		c.addPeople(c1);
+		c.addPeople(c2);
+		c.addPeople(c3);
+		
+		investor.getClubs().add(a);
+		investor.getClubs().add(b);
+		investor.getClubs().add(c);
+		investor.organizeClubs(5);
+		String name = "";
+		for (int i = 0; i < investor.getClubs().size(); i++) {
+			name += investor.getClubs().get(i).getName()+" ";
+		}
+		assertEquals("los animales animales tiernos becerros sin rienda ", name);
+	}
 
 }

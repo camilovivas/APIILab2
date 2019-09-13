@@ -1,0 +1,3 @@
+animales tiernos 10 Thu Jan 12 00:06:00 COT 2012 cualquiera
+becerros sin rienda 30 Thu Jan 12 00:06:00 COT 2012 cualquiera
+los animales 52 Thu Jan 12 00:06:00 COT 2012 cualquiera
