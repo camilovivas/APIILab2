@@ -70,8 +70,8 @@ public class Investor {
 				save += (name+","+id+","+creationDate+","+kindOfPet+"\n");
 			}
 			s.write(save);
-			escritor.close();
 			s.close();
+			escritor.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

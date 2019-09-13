@@ -18,7 +18,7 @@ class InvestorTest {
 	
 	@Test
 	public void configDateTest() throws ParseException {//como compruebo un date?
-		String date = "15/09/2000";
+		String date = "30/9/2000";
 		Date resultado = investor.configDate(date);
 	}
 	
@@ -129,7 +129,7 @@ class InvestorTest {
 		assertEquals(1, quantityPets);
 		
 	}
-//	@Test
+	@Test
 	public void createWorld() throws ParseException, IOException, ExceptionRegistry {
 		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
 		Date d = date.parse("12/06/2012");
@@ -140,7 +140,7 @@ class InvestorTest {
 		
 	}
 	
-	@Test
+//	@Test
 	public void addPetToPeople() throws ParseException, IOException, ExceptionRegistry {
 		SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
 		Date d = date.parse("12/06/2012");

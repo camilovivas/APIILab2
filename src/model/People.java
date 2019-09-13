@@ -108,7 +108,7 @@ public class People implements Serializable{
 			pets.add(a);
 		}
 		else {
-			throw new ExceptionRegistry(a.getName());
+			throw new ExceptionRegistry(a.getId());//TODO
 		}
 	}
 	
